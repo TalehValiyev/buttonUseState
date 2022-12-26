@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React, { useState } from "react";
 
 function App() {
+  const [message, setMessage] = useState("");
+  const [name, setName] = useState("hidden");
+  const [warnMessage, setWarnMessage] = useState("");
+  const [button, setButton] = useState("");
+  const openPopup = () => {
+    setMessage("hello");
+    setName("visible");
+  };
+
+  const close = () => {
+    setName("hidden");
+  };
+
+  const ClickOpen = () => {
+    setWarnMessage("xeberdarliq");
+    setButton("button-red");
+  };
+  const clickClose = () => {
+    setWarnMessage("");
+    setButton("button-blue");
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="h1">{warnMessage}</h1>
+      <p className={name}>{message}</p>
+
+      <div className="button">
+        <button className={button} onClick={ClickOpen} onMouseOver={openPopup}>
+          openUp
+        </button>
+        <button className={button} onClick={clickClose} onMouseLeave={close}>
+          Close
+        </button>
+      </div>
     </div>
   );
 }
